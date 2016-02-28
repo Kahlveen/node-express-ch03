@@ -1,6 +1,13 @@
 var express = require('express');
 var app = express();
 
+//Set up handlebars view engine
+var handlebars = require('express-handlebars').create({defaultLayout:'main'});
+
+//Registers the given template engine(callback) "handlebars.engine" as 'handlebars'
+app.engine('handlebars',handlebars.engine);
+app.set('view engine','handlebars');
+
 app.set('port',process.env.PORT || 3000);
 
 //Routes
@@ -22,6 +29,7 @@ app.get('/about',function(req,res){
 
 
 //Note that we are using app.use instead of app.get
+//app.use is the method by which Express adds middleware
 //custom 404 page
 app.use(function(req,res){
   res.type('text/plain');
