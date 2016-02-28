@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 
 //Set up handlebars view engine
+//defaultLayout set to main.handlebars. i.e. unless specified otherwise, default view will be main
 var handlebars = require('express-handlebars').create({defaultLayout:'main'});
 
 //Registers the given template engine(callback) "handlebars.engine" as 'handlebars'
