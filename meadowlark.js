@@ -19,13 +19,11 @@ app.set('port',process.env.PORT || 3000);
 
 //Express's res defaults to status code of 200 OK
 app.get('/',function(req,res){
-  res.type('text/plain');
-  res.send("Meadowlark Travel");
+  res.render('home'); //IMPT!! The name here must be exactly the same as the filename of the handlebars file in views dir
 });
 
 app.get('/about',function(req,res){
-  res.type('text/plain');
-  res.send("About Meadowlark Travel");
+  res.render('about');
 });
 
 
@@ -33,17 +31,15 @@ app.get('/about',function(req,res){
 //app.use is the method by which Express adds middleware
 //custom 404 page
 app.use(function(req,res){
-  res.type('text/plain');
   res.status(404);
-  res.send('404 - Not Found');
+  res.render('404');
 });
 
 //custom 500 page
 app.use(function(err,req,res,next){
   console.error(err.stack);
-  res.type('text/plain');
   res.status(500);
-  res.send('500 - Server Error');
+  res.render('500');
 });
 
 app.listen(app.get('port'), function(){
