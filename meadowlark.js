@@ -14,6 +14,15 @@ app.set('port',process.env.PORT || 3000);
 //Set up static middleware
 app.use(express.static(__dirname + '/public'));
 
+//Set up variables for dynamic views
+var fortunes = [
+  "Conquer your fears or they will conquer you.",
+  "Rivers need springs",
+  "Do not fear what you don't know",
+  "You will have a pleasant surprise",
+  "Whenever possible, keep it simple"
+];
+
 //Routes
 //app.<VERB> - VERB here represents the HTTP methods, i.e. GET, POST etc
 //This method takes in two parameters: a path(defines the route) and a function
@@ -28,7 +37,10 @@ app.get('/',function(req,res){
 });
 
 app.get('/about',function(req,res){
-  res.render('about');
+  var randomFortune = fortunes[Math.floor(Math.random() * fortunes.length)];
+  //Pass in variables into the handlebars template like this!
+  //Within the template, use {{fortune}}
+  res.render('about', {fortune: randomFortune});
 });
 
 
