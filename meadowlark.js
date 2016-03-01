@@ -11,16 +11,18 @@ app.set('view engine','handlebars');
 
 app.set('port',process.env.PORT || 3000);
 
+//Set up static middleware
+app.use(express.static(__dirname + '/public'));
+
 //Routes
 //app.<VERB> - VERB here represents the HTTP methods, i.e. GET, POST etc
 //This method takes in two parameters: a path(defines the route) and a function
-
 //app.<VERB> also handles URL normalizing. i.e. /about?foo=bar also directs to about page
 
 //Express's res defaults to status code of 200 OK
 app.get('/',function(req,res){
   //IMPT!! The name here must be exactly the same as the filename of the handlebars file in views dir
-  //The root path is the "views" dir. If the handlebars file is placed in e.g. test
+  //The root path is the "views" dir. If the handlebars file is placed in folder e.g. views/test
   //then it should be res.render('test/home') instead
   res.render('home');
 });
