@@ -19,7 +19,10 @@ app.set('port',process.env.PORT || 3000);
 
 //Express's res defaults to status code of 200 OK
 app.get('/',function(req,res){
-  res.render('home'); //IMPT!! The name here must be exactly the same as the filename of the handlebars file in views dir
+  //IMPT!! The name here must be exactly the same as the filename of the handlebars file in views dir
+  //The root path is the "views" dir. If the handlebars file is placed in e.g. test
+  //then it should be res.render('test/home') instead
+  res.render('home');
 });
 
 app.get('/about',function(req,res){
